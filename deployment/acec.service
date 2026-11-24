@@ -1,0 +1,37 @@
+[Unit]
+Description=AC Endurance Control
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=acec
+Group=acec
+WorkingDirectory=/opt/ac-endurance-control
+EnvironmentFile=-/etc/ac-endurance-control.env
+Environment=ACEC_DB=/var/lib/ac-endurance-control/endurance.sqlite3
+Environment=ACEC_REPLAY_DIR=/var/lib/ac-endurance-control/replays
+Environment=ACEC_SERVER_ROOT=/srv/assetto/serverfiles
+Environment=ACEC_LGSM=/srv/assetto/acserver
+Environment=ACEC_HTTP_HOST=127.0.0.1
+Environment=ACEC_HTTP_PORT=8088
+Environment=ACEC_UDP_HOST=0.0.0.0
+Environment=ACEC_UDP_PORT=12001
+Environment=ACEC_WS_HOST=127.0.0.1
+Environment=ACEC_WS_PORT=8089
+ExecStart=/usr/bin/python3 -m ac_endurance
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=30
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=false
+ReadOnlyPaths=/srv/assetto/serverfiles
+ReadWritePaths=/var/lib/ac-endurance-control
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

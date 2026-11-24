@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily AC Endurance Control database backup
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=15m
+Unit=acec-backup.service
+
+[Install]
+WantedBy=timers.target

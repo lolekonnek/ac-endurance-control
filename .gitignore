@@ -1,0 +1,27 @@
+# Local secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime data, backups and recordings
+var/
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+*.db
+*.db-shm
+*.db-wal
+*.bak
+*.backup
+replays/
+
+# Python build/runtime files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated client release packages
+dist/

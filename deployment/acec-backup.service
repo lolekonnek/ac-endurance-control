@@ -1,0 +1,14 @@
+[Unit]
+Description=SQLite online backup for AC Endurance Control
+After=acec.service
+
+[Service]
+Type=oneshot
+User=acec
+Group=acec
+WorkingDirectory=/opt/ac-endurance-control
+ExecStart=/usr/bin/python3 /opt/ac-endurance-control/tools/backup_db.py /var/lib/ac-endurance-control/endurance.sqlite3 /var/lib/ac-endurance-control/backups --keep 14
+UMask=0027
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/ac-endurance-control
